@@ -18,7 +18,6 @@ customElements.define(tagName, class extends HTMLElement {
   }
   connectedCallback() {
     this.arrange();
-    this.events();
     setTimeout(() => this.hidden = false);
   }
   arrange() {
@@ -36,6 +35,7 @@ customElements.define(tagName, class extends HTMLElement {
     ));
     figures.forEach(figure => figure.remove());
     this.#counter++;
+    this.events();
   }
   events() {
     new MutationObserver(([{addedNodes}]) => addedNodes?.length > 0 && this.arrange()).observe(this, {childList: true});
